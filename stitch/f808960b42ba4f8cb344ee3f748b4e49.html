@@ -1,0 +1,23 @@
+# Tetris Game Action Contract PRD
+
+## Overview
+Tetris Game Action Contract turns the user's request into a directly usable application. The first screen is not a landing page; it is the real workflow surface where the user can inspect data, take actions, and recover from empty or error states. User-facing copy language: English.
+
+## Goals
+- Working first-load playable game surface.
+- Full game loop controls (Start, Pause, Resume, Restart).
+- Deterministic game state exposed for testing.
+
+## Technical Decisions
+- Palette: Background #0F172A, Surface #111827, Text #F8FAFC, Border #334155.
+- Icons: Lucide React.
+- State: Single-sourced game state.
+
+## Screens to Generate
+1. Game Board: Main playable scene.
+2. Next Piece Preview: Status panel for upcoming pieces.
+3. Main Menu: Initial entry point with actions.
+4. Pause Overlay: Interstitial state.
+5. Game Over: Result screen with final stats.
+6. Controls Help: Reference for input.
+7. Game Options: Audio and difficulty settings.

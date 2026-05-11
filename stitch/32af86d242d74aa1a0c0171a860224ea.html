@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tetri-Core - Game Over</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#003915",
+                        "inverse-on-surface": "#303032",
+                        "on-tertiary-fixed-variant": "#3a485c",
+                        "on-surface": "#e4e2e4",
+                        "surface": "#131315",
+                        "outline-variant": "#45464d",
+                        "on-primary-container": "#798098",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#353436",
+                        "on-secondary-fixed": "#002109",
+                        "error-container": "#93000a",
+                        "surface-container": "#1f1f21",
+                        "outline": "#909097",
+                        "primary-fixed": "#dae2fd",
+                        "background": "#131315",
+                        "on-error": "#690005",
+                        "on-background": "#e4e2e4",
+                        "inverse-surface": "#e4e2e4",
+                        "secondary": "#4ae176",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-secondary-container": "#004119",
+                        "surface-dim": "#131315",
+                        "surface-tint": "#bec6e0",
+                        "primary": "#bec6e0",
+                        "on-primary": "#283044",
+                        "surface-container-high": "#2a2a2b",
+                        "surface-container-low": "#1b1b1d",
+                        "on-primary-fixed": "#131b2e",
+                        "secondary-fixed-dim": "#4ae176",
+                        "on-secondary-fixed-variant": "#005321",
+                        "on-tertiary-container": "#738298",
+                        "tertiary-fixed-dim": "#b9c7e0",
+                        "secondary-container": "#00b954",
+                        "tertiary-container": "#09182a",
+                        "surface-bright": "#39393b",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-tertiary-fixed": "#0d1c2f",
+                        "secondary-fixed": "#6bff8f",
+                        "tertiary-fixed": "#d5e3fd",
+                        "inverse-primary": "#565e74",
+                        "tertiary": "#b9c7e0",
+                        "on-tertiary": "#233144",
+                        "on-surface-variant": "#c6c6cd",
+                        "primary-container": "#0f172a",
+                        "surface-variant": "#353436"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "cell-size": "32px",
+                        "margin": "24px",
+                        "gutter": "16px",
+                        "touch-target": "44px",
+                        "board-width": "320px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "body-base": ["Hanken Grotesk"],
+                        "mono-score": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "mono-label": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-base": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "mono-score": ["20px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "mono-label": ["12px", { "lineHeight": "1.0", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom glow effects for the specific dark 8-bit aesthetic */
+        .glow-error {
+            text-shadow: 0 0 10px rgba(255, 180, 171, 0.7), 0 0 20px rgba(255, 180, 171, 0.5);
+        }
+        .glow-secondary {
+            box-shadow: 0 0 15px rgba(74, 225, 118, 0.4);
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+        }
+        .bg-grid-pattern {
+            background-size: 32px 32px;
+            background-image: linear-gradient(to right, rgba(51, 65, 85, 0.2) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(51, 65, 85, 0.2) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased selection:bg-secondary/30 selection:text-secondary">
+<!-- Suppressed TopAppBar and SideNavBar as this is a linear/transactional "Success/Confirmation" (Game Over) screen -->
+<!-- Main Content Canvas - Game Over Screen -->
+<main class="flex-grow flex items-center justify-center p-margin relative overflow-hidden bg-grid-pattern">
+<!-- Background decorative elements to simulate the void/game board behind the modal -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none flex items-center justify-center">
+<!-- Simulated stacked blocks -->
+<div class="w-board-width h-[640px] border border-outline-variant relative">
+<!-- Ghost piece -->
+<div class="absolute bottom-[160px] left-[96px] w-[96px] h-[64px] border border-dashed border-secondary/50 bg-secondary/10"></div>
+<!-- Dead blocks -->
+<div class="absolute bottom-0 left-0 w-full h-[160px] bg-surface-container border-t border-outline-variant grid grid-cols-10 grid-rows-5 opacity-50">
+<div class="border-[0.5px] border-outline-variant/30 bg-primary/20 col-start-1 row-start-5"></div>
+<div class="border-[0.5px] border-outline-variant/30 bg-tertiary/20 col-start-2 row-start-5"></div>
+<div class="border-[0.5px] border-outline-variant/30 bg-secondary/20 col-start-5 row-start-4"></div>
+</div>
+</div>
+</div>
+<!-- Glass Overlay Modal (Level 2) -->
+<div class="relative z-10 w-full max-w-md glass-panel bg-surface/40 border border-outline-variant rounded p-margin flex flex-col items-center text-center shadow-2xl">
+<!-- Game Over Headline -->
+<h1 class="font-display text-display text-error glow-error mb-2 tracking-tighter uppercase">
+                Game Over
+            </h1>
+<!-- High Score Badge (Dynamic) -->
+<div class="bg-secondary-container/20 border border-secondary text-secondary font-mono-label text-mono-label px-3 py-1 rounded-full mb-8 flex items-center gap-2 animate-pulse">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+                NEW HIGH SCORE!
+            </div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-2 gap-unit w-full mb-8">
+<!-- Final Score (Large Card) -->
+<div class="col-span-2 bg-surface-container border border-outline-variant rounded p-gutter flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase tracking-widest mb-2">Final Score</span>
+<span class="font-mono-score text-display text-primary">142,850</span>
+</div>
+<!-- Level Reached -->
+<div class="bg-surface-container border border-outline-variant rounded p-gutter flex flex-col items-center justify-center hover:bg-surface-container-high transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase tracking-widest mb-1">Level</span>
+<span class="font-mono-score text-headline-lg text-on-surface">12</span>
+</div>
+<!-- Lines Cleared -->
+<div class="bg-surface-container border border-outline-variant rounded p-gutter flex flex-col items-center justify-center hover:bg-surface-container-high transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-on-surface-variant uppercase tracking-widest mb-1">Lines</span>
+<span class="font-mono-score text-headline-lg text-on-surface">104</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col w-full gap-gutter mt-4">
+<button class="h-touch-target w-full bg-secondary text-on-secondary font-headline-md text-body-base font-bold rounded glow-secondary hover:bg-secondary-fixed transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    Play Again
+                </button>
+<button class="h-touch-target w-full bg-transparent border border-outline text-on-surface font-headline-md text-body-base rounded hover:bg-surface-container-high hover:text-primary transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">menu</span>
+                    Main Menu
+                </button>
+</div>
+</div>
+</main>
+</body></html>

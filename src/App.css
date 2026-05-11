@@ -1,0 +1,69 @@
+@import "../stitch/design-tokens.css";
+
+/* Tetris block colors */
+.block-i { background-color: #00f0f0; box-shadow: inset 0 0 10px rgba(255,255,255,0.3); }
+.block-o { background-color: #f0f000; box-shadow: inset 0 0 10px rgba(255,255,255,0.3); }
+.block-t { background-color: #a000f0; box-shadow: inset 0 0 10px rgba(255,255,255,0.3); }
+.block-s { background-color: #00f000; box-shadow: inset 0 0 10px rgba(255,255,255,0.3); }
+.block-z { background-color: #f00000; box-shadow: inset 0 0 10px rgba(255,255,255,0.3); }
+.block-j { background-color: #0000f0; box-shadow: inset 0 0 10px rgba(255,255,255,0.3); }
+.block-l { background-color: #f0a000; box-shadow: inset 0 0 10px rgba(255,255,255,0.3); }
+
+/* Ghost piece colors (dashed borders, semi-transparent fill) */
+.ghost-block-i { background-color: rgba(0, 240, 240, 0.15); border: 1px dashed rgba(0, 240, 240, 0.5); }
+.ghost-block-o { background-color: rgba(240, 240, 0, 0.15); border: 1px dashed rgba(240, 240, 0, 0.5); }
+.ghost-block-t { background-color: rgba(160, 0, 240, 0.15); border: 1px dashed rgba(160, 0, 240, 0.5); }
+.ghost-block-s { background-color: rgba(0, 240, 0, 0.15); border: 1px dashed rgba(0, 240, 0, 0.5); }
+.ghost-block-z { background-color: rgba(240, 0, 0, 0.15); border: 1px dashed rgba(240, 0, 0, 0.5); }
+.ghost-block-j { background-color: rgba(0, 0, 240, 0.15); border: 1px dashed rgba(0, 0, 240, 0.5); }
+.ghost-block-l { background-color: rgba(240, 160, 0, 0.15); border: 1px dashed rgba(240, 160, 0, 0.5); }
+
+/* Tetris grid */
+.tetris-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  width: 100%;
+  height: 100%;
+  gap: 1px;
+  background-color: var(--color-surface-container-highest);
+}
+
+.tetris-cell {
+  background-color: var(--color-surface);
+  aspect-ratio: 1;
+}
+
+/* Glass panel utility */
+.glass-panel {
+  backdrop-filter: blur(16px);
+  background-color: rgba(19, 19, 21, 0.6);
+}
+
+/* Glow effects */
+.glow-secondary {
+  box-shadow: 0 0 20px rgba(74, 225, 118, 0.3);
+}
+
+.glow-error {
+  text-shadow: 0 0 20px rgba(255, 180, 171, 0.5);
+}
+
+/* Neon glow for buttons */
+.neon-glow {
+  box-shadow: 0 0 10px rgba(74, 225, 118, 0.2);
+}
+
+/* Background grid pattern */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(51, 65, 85, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(51, 65, 85, 0.2) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Scanline filter */
+.scanline-overlay {
+  background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.1) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+}
